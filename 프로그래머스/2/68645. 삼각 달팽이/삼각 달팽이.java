@@ -2,7 +2,8 @@ class Solution {
     public int[] solution(int n) {
         // 2차원 배열 선언
         // 새로 알게된 점 : java에서는 초기화 시, 디폴트값 0으로 채워짐.
-        int[][] triangle = new int [n][n];
+        // 전체 반복이 있고, 내부에선 아래, 오른쪽, 대각선이 반복된다는걸 나눠서 생각해보자.
+        int[][] triangle = new int[n][n];
         
         int v = 1;
         int x = 0;
@@ -10,7 +11,6 @@ class Solution {
         
         // 다 채워질 때 까지 무한반복
         while(true) {
-            
             // 아래로 이동
             while(true) {
                 y += 1;
@@ -50,14 +50,10 @@ class Solution {
         
         for (int i = 0; i < n; i++) {
             for (int j = 0; j <= i; j++) {
-                result[k] = triangle[i][j];
-                k++;
+                result[k++] = triangle[i][j];
             }
         }
-        
-        
-        
-        int[] answer = result;
-        return answer;
+
+        return result;
     }
 }
