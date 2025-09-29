@@ -1,14 +1,13 @@
 class Solution {
     public int solution(int n) {
-        int answer = 1;
-        int k = 0;
+        int number = 1;
+        int k = 1;
         
-        while(true) {
+        while(number <= n) {
+            number *= k;
             k++;
-            answer *= k;
-            if (answer > n) break;
         }
         
-        return k-1;
+        return k-2;
     }
 }
