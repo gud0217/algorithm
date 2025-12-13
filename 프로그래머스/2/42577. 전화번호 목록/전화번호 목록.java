@@ -4,23 +4,21 @@ import java.util.*;
 
 class Solution {
     public boolean solution(String[] phone_book) {
-        boolean answer = true;
-        
-        // 사전순 정렬
-        Arrays.sort(phone_book);
-        
-        for(int i = 0; i < phone_book.length - 1; i++) {
-            int length1 = phone_book[i].length();
-            int length2 = phone_book[i + 1].length();
-            
-            if (length1 < length2) {
-                String str = phone_book[i + 1].substring(0, length1);
-                if (phone_book[i].equals(str)) {
-                    answer = false;
-                    break;
-                }
-            }
+        Set<String> set = new HashSet<>();
+
+// 1. 전부 저장
+for (String num : phone_book) {
+    set.add(num);
+}
+
+// 2. 접두어 검사
+for (String num : phone_book) {
+    for (int i = 1; i < num.length(); i++) {
+        if (set.contains(num.substring(0, i))) {
+            return false;
         }
-        return answer;
+    }
+}
+return true;
     }
 }
