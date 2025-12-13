@@ -16,7 +16,10 @@ class Solution {
             list.add(slice[i[2] - 1]);
         }
         
-        int[] answer = list.stream().mapToInt(i -> i).toArray();
+        int[] answer = new int[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            answer[i] = list.get(i);
+        }
         
         return answer;
     }
