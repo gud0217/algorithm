@@ -1,24 +1,22 @@
-// 1.commands 배열 크기만큼 반복
-//  1. 자르기
-//  2. 정렬하기
-//  3. k번째 수 구하기
-import java.util.Arrays;
+// commands 길이만큼 반복
+//  i번째 숫자부터, j번째포함 자르기
+//  정렬하기
+//  k번째 숫자 찾기
+//  결과값에 넣기
+
+import java.util.*;
 
 class Solution {
     public int[] solution(int[] array, int[][] commands) {
-        int[] answer = new int[commands.length];
+        List<Integer> list = new ArrayList<>();
         
-        for (int i = 0; i < commands.length; i++) {
-            int startIndex = commands[i][0] - 1;
-            int endIndex = commands[i][1] - 1;
-            int findIndex = commands[i][2] - 1;
-            
-            int[] arr = Arrays.copyOfRange(array, startIndex, endIndex + 1);
-            
-            Arrays.sort(arr);
-            
-            answer[i] = arr[findIndex];
+        for (int[] i : commands) {
+            int[] slice = Arrays.copyOfRange(array, i[0] - 1, i[1]);
+            Arrays.sort(slice);
+            list.add(slice[i[2] - 1]);
         }
+        
+        int[] answer = list.stream().mapToInt(i -> i).toArray();
         
         return answer;
     }
