@@ -16,7 +16,7 @@ import java.util.*;
 
 class Solution {
     public String[] solution(String[] record) {
-        HashMap<String, String> hm = new HashMap<>();
+        Map<String, String> hm = new HashMap<>();
         int answerSize = 0; // 출력 횟수
         // record 전체 순회
         for (String s : record) {
