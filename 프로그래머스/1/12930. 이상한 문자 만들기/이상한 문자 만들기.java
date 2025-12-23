@@ -1,34 +1,41 @@
 import java.util.*;
 
+/*
+1. 문자열의 모든 문자에 대해 반복
+    A. 문자가 공백 문자인 경우
+        A-1. 그대로 이어 붙이기
+        A-2. 다음 등장하는 알파벳은 대문자
+    B. 문자가 공백 문자가 아닌 경우
+        B-1. 대소문자 변환, 이어 붙이기
+        B-2. 다음 등장하는 알파벳은 현재와 반대
+2. 구성한 문자열 반환
+*/
+
 class Solution {
     public String solution(String s) {
-        String answer = "";
-        StringBuilder sb = new StringBuilder();
-        int idx = 0;
-        char[] charArr = s.toCharArray();
+        StringBuilder builder = new StringBuilder();
+        boolean toUpper = true;
         
-        for (int i = 0; i < s.length(); i++) {
-            if (charArr[i] == ' ') {
-                idx = 0;
-                sb.append(' ');
-                continue;
-            }
-            
-            // 짝수번째 알파벳
-            if (idx % 2 == 0) {
-                sb.append(Character.toUpperCase(charArr[i]));
-                idx++;
-                continue;
-            }
-            // 홀수번째 알파벳
-            else {
-                sb.append(Character.toLowerCase(charArr[i]));
-                idx++;
-                continue;
+        // 1
+        for (char c : s.toCharArray()) {
+            // A
+            if (!Character.isAlphabetic(c)) {
+                // A-1
+                builder.append(c);
+                // A-2
+                toUpper = true;
+            // B
+            } else {
+                // B-1
+                if (toUpper) {
+                    builder.append(Character.toUpperCase(c));
+                } else {
+                    builder.append(Character.toLowerCase(c));
+                }
+                // B-2
+                toUpper = !toUpper;
             }
         }
-        
-        answer = sb.toString();
-        return answer;
+        return builder.toString();
     }
 }
