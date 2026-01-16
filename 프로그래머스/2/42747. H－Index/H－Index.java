@@ -4,19 +4,13 @@ class Solution {
     public int solution(int[] citations) {
         // 정렬 (인용 수 낮은 순서)
         Arrays.sort(citations);
-        
-        // h의 최댓값
-        int answer = 0;
+        int n = citations.length;
         
         // 반복
-        for (int i = 1; i <= citations.length; i++) {
-            for (int j = 0; j < citations.length; j++) {
-                if (citations[j] < i) continue;
-                if (citations.length - j >= i) {
-                    answer = i;
-                }
-            }
+        for (int i = 0; i < n; i++) {
+            int h = n - i;
+            if (citations[i] >= h) return h;
         }
-        return answer;
+        return 0;
     }
 }
